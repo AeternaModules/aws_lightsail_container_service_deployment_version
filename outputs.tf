@@ -12,7 +12,7 @@ output "lightsail_container_service_deployment_versions_created_at" {
 }
 output "lightsail_container_service_deployment_versions_public_endpoint" {
   description = "Map of public_endpoint values across all lightsail_container_service_deployment_versions, keyed the same as var.lightsail_container_service_deployment_versions"
-  value       = { for k, v in aws_lightsail_container_service_deployment_version.lightsail_container_service_deployment_versions : k => v.public_endpoint if v.public_endpoint != null && length(v.public_endpoint) > 0 }
+  value       = { for k, v in aws_lightsail_container_service_deployment_version.lightsail_container_service_deployment_versions : k => one(v.public_endpoint) if v.public_endpoint != null && length(v.public_endpoint) > 0 }
 }
 output "lightsail_container_service_deployment_versions_region" {
   description = "Map of region values across all lightsail_container_service_deployment_versions, keyed the same as var.lightsail_container_service_deployment_versions"
